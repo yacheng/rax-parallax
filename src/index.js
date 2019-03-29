@@ -1,7 +1,7 @@
 'use strict';
 
 import {createElement, Component, render, setNativeProps, useRef, useEffect} from 'rax';
-import findDOMNode from 'rax-findDOMNode'
+import findDOMNode from 'rax-find-dom-node';
 import View from 'rax-view';
 import {isWeex} from 'universal-env';
 import bindingx from 'weex-bindingx';
