@@ -1,74 +1,65 @@
-# Parallax
-
 [![npm](https://img.shields.io/npm/v/rax-parallax.svg)](https://www.npmjs.com/package/rax-parallax)
 
-## Install
+**描述：**
+用于呈现滚动视差效果: 随着用户滚动页面，一些组件会随着滚动产生动画视差效果，如放大/缩小、位移、背景色/透明度/模糊渐变等
+![](https://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/5cba5521d6192d3415b016e946d6d21c.gif)
+> 注意: 在weex环境下必须放在滚动容器的第一个位置
+> 注意: 该组件目前只支持H5和weex，不支持小程序
+## 安装
 
 ```bash
 $ npm install --save rax-parallax
 ```
-
-## Import
+## 引用
 
 ```jsx
 import Parallax from 'rax-parallax';
 ```
 
-default style：
+## 属性
+注：
+1、**支持**列表中的 <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" />代表h5 <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />代表weex  <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" />代表小程序
+|**属性**| **类型** | **默认值** | **必填** | **描述**           | **支持** |
+| ----------- | ---------- | ---------- | ------------ | ------------------ | ------------ |
+| bindingScroller        | `ref`   | -|true  |  滚动容器，比如scrollview,recyclerview |<img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /><img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />|
+| transform        | `array`   | -|false | transform变换属性 |<img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /><img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />|
+| opacity   | `object`   | - | false|透明度变换属性 |<img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /><img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />|
+| backgroundColor  | `object`|-|false   | 背景色变换属性 |<img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /><img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />|
+| extraBindingProps      | `array` |[]| false | 额外需要绑定在bindingScroller上的binding属性 |<img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /><img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />|
+
+## 示例
+[在线 Demo](https://jsplayground.taobao.org/raxplayground/80768709-4464-41ac-91a2-8ce81f6068e5)
 
 ```jsx
-<Parallax />
-```
-
-user defined style：
-
-```jsx
-<Parallax />
-```
-> Note: weex environment must be placed in the first position of ScrollView
-
-## Props
-
-| name      | type       | default  | describe   |
-| :---------- | :------- | :--------------------------------------- | :--------------------- |
-| bindingScroller        | ref   |   |  scroller reference, such as a listView |
-| transform        | Array   | [] | transform properties |
-| opacity   | Number   |  | opacity property for transition |
-| backgroundColor  | String   | backgroundColor property for transition |
-| extraBindingProps      | Array | [] | extra props for bindingx |
-
-## Example
-
-```jsx
-// demo
-import {createElement, Component, render} from 'rax';
+import { createElement, Component, render, createRef } from 'rax';
 import View from 'rax-view';
 import Text from 'rax-text';
-import ListView from 'rax-listview';
+import RecyclerView from 'rax-recyclerview';
 import Picture from 'rax-picture';
+import DU from "driver-universal"
 import Parallax from 'rax-parallax';
 
 let listData = [
-  {name1: 'tom'}, {name1: 'tom'}, {name1: 'tom'},
-  {name1: 'tom'}, {name1: 'tom'}, {name1: 'tom'},
-  {name1: 'tom'}, {name1: 'tom'}, {name1: 'tom'},
-  {name1: 'tom'}, {name1: 'tom'}, {name1: 'tom'},
-  {name1: 'tom'}, {name1: 'tom'}, {name1: 'tom'},
-  {name1: 'tom'}, {name1: 'tom'}, {name1: 'tom'},
-  {name1: 'tom'}, {name1: 'tom'}, {name1: 'tom'},
-  {name1: 'tom'}, {name1: 'tom'}, {name1: 'tom'},
-  {name1: 'tom'}, {name1: 'tom'}, {name1: 'tom'},
-  {name1: 'tom'}, {name1: 'tom'}, {name1: 'tom'},
-  {name1: 'tom'}, {name1: 'tom'}, {name1: 'tom'},
-  {name1: 'tom'}, {name1: 'tom'}, {name1: 'tom'},
-  {name1: 'tom'}, {name1: 'tom'}, {name1: 'tom'},
-  {name1: 'tom'}, {name1: 'tom'}, {name1: 'tom'},
-  {name1: 'tom'}, {name1: 'tom'}, {name1: 'tom'},
-  {name1: 'tom'}, {name1: 'tom'}, {name1: 'tom'},
+  { name1: 'tom' }, { name1: 'tom' }, { name1: 'tom' },
+  { name1: 'tom' }, { name1: 'tom' }, { name1: 'tom' },
+  { name1: 'tom' }, { name1: 'tom' }, { name1: 'tom' },
+  { name1: 'tom' }, { name1: 'tom' }, { name1: 'tom' },
+  { name1: 'tom' }, { name1: 'tom' }, { name1: 'tom' },
+  { name1: 'tom' }, { name1: 'tom' }, { name1: 'tom' },
+  { name1: 'tom' }, { name1: 'tom' }, { name1: 'tom' },
+  { name1: 'tom' }, { name1: 'tom' }, { name1: 'tom' },
+  { name1: 'tom' }, { name1: 'tom' }, { name1: 'tom' },
+  { name1: 'tom' }, { name1: 'tom' }, { name1: 'tom' },
+  { name1: 'tom' }, { name1: 'tom' }, { name1: 'tom' },
+  { name1: 'tom' }, { name1: 'tom' }, { name1: 'tom' },
+  { name1: 'tom' }, { name1: 'tom' }, { name1: 'tom' },
+  { name1: 'tom' }, { name1: 'tom' }, { name1: 'tom' },
+  { name1: 'tom' }, { name1: 'tom' }, { name1: 'tom' },
+  { name1: 'tom' }, { name1: 'tom' }, { name1: 'tom' },
 ];
 
 
-class ListViewDemo extends Component {
+class App extends Component {
 
   constructor(props) {
     super(props);
@@ -76,15 +67,9 @@ class ListViewDemo extends Component {
       index: 0,
       data: listData
     };
+    this.bindingScroller = createRef()
   }
 
-  listHeader = () => {
-    return (
-      <View style={styles.title}>
-        <Text style={styles.text}>列表头部</Text>
-      </View>
-    );
-  }
   listLoading = () => {
     if (this.state.index < 4) {
       return (
@@ -99,15 +84,21 @@ class ListViewDemo extends Component {
   listItem = (item, index) => {
     if (index % 2 == 0) {
       return (
-        <View style={styles.item1}>
-          <Text style={styles.text}>{item.name1}</Text>
-        </View>
+        <RecyclerView.Cell>
+          <View style={styles.item1}>
+            <Text style={styles.text}>{item.name1}</Text>
+          </View>
+        </RecyclerView.Cell>
+
       );
     } else {
       return (
-        <View style={styles.item2}>
-          <Text style={styles.text}>{item.name1}</Text>
-        </View>
+        <RecyclerView.Cell>
+          <View style={styles.item2}>
+            <Text style={styles.text}>{item.name1}</Text>
+          </View>
+        </RecyclerView.Cell>
+
       );
     }
   }
@@ -116,14 +107,14 @@ class ListViewDemo extends Component {
       this.state.index++;
       if (this.state.index < 5) {
         this.state.data.push(
-          {name1: 'loadmore 2'},
-          {name1: 'loadmore 3'},
-          {name1: 'loadmore 4'},
-          {name1: 'loadmore 5'},
-          {name1: 'loadmore 2'},
-          {name1: 'loadmore 3'},
-          {name1: 'loadmore 4'},
-          {name1: 'loadmore 5'}
+          { name1: 'loadmore 2' },
+          { name1: 'loadmore 3' },
+          { name1: 'loadmore 4' },
+          { name1: 'loadmore 5' },
+          { name1: 'loadmore 2' },
+          { name1: 'loadmore 3' },
+          { name1: 'loadmore 4' },
+          { name1: 'loadmore 5' }
         );
       }
       this.setState(this.state);
@@ -133,12 +124,13 @@ class ListViewDemo extends Component {
   componentDidMount() {
     setTimeout(() => {
       this.setState({
-        bindingScroller: this.refs.listView
+        bindingScroller: this.bindingScroller
       });
     }, 100);
   }
 
   render() {
+    let dataSource = this.state.data;
     return (
       <View style={styles.container}>
         <Parallax
@@ -155,18 +147,22 @@ class ListViewDemo extends Component {
               out: [1.3, 1.3, 1, 1]  // [x1,y1,x2,y2]
             }
           ]}>
-          <Picture style={{width: 750, height: 576}}
-            source={{uri: '//gw.alicdn.com/tfs/TB12DNfXMmTBuNjy1XbXXaMrVXa-750-576.png'}} />
+          <Picture style={{ width: 750, height: 576 }}
+            source={{ uri: '//gw.alicdn.com/tfs/TB12DNfXMmTBuNjy1XbXXaMrVXa-750-576.png' }} />
         </Parallax>
-        <ListView
-          ref="listView"
+        <RecyclerView
+          ref={this.bindingScroller}
           style={styles.list}
-          renderHeader={this.listHeader}
-          renderFooter={this.listLoading}
-          renderRow={this.listItem}
-          dataSource={this.state.data}
           onEndReached={this.handleLoadMore}
-        />
+        >
+          <RecyclerView.Cell>
+            <View style={styles.title}>
+              <Text style={styles.text}>列表头部</Text>
+            </View>
+          </RecyclerView.Cell>
+          {dataSource.map(this.listItem)}
+          {this.listLoading()}
+        </RecyclerView>
       </View>
     );
   }
@@ -209,6 +205,6 @@ const styles = {
   }
 };
 
-render(<ListViewDemo />);
+render(<App />, document.body, { driver: DU });
 
 ```
