@@ -2,7 +2,7 @@ import { createElement, Component, render, createRef } from 'rax';
 import View from 'rax-view';
 import Text from 'rax-text';
 import RecyclerView from 'rax-recyclerview';
-import Picture from 'rax-picture';
+import Image from 'rax-image';
 import DU from "driver-universal"
 import Parallax from '../src/index';
 
@@ -41,7 +41,7 @@ class App extends Component {
     if (this.state.index < 4) {
       return (
         <View style={styles.loading}>
-          <Text style={styles.text}>加载中...</Text>
+          <Text style={styles.text}>loading...</Text>
         </View>
       );
     } else {
@@ -114,7 +114,7 @@ class App extends Component {
               out: [1.3, 1.3, 1, 1]  // [x1,y1,x2,y2]
             }
           ]}>
-          <Picture style={{ width: 750, height: 576 }}
+          <Image style={{ width: 750, height: 576 }}
             source={{ uri: '//gw.alicdn.com/tfs/TB12DNfXMmTBuNjy1XbXXaMrVXa-750-576.png' }} />
         </Parallax>
         <RecyclerView
@@ -124,7 +124,7 @@ class App extends Component {
         >
           <RecyclerView.Cell>
             <View style={styles.title}>
-              <Text style={styles.text}>列表头部</Text>
+              <Text style={styles.text}>header</Text>
             </View>
           </RecyclerView.Cell>
           {dataSource.map(this.listItem)}

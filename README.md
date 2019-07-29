@@ -2,7 +2,7 @@
 
 **描述：**
 用于呈现滚动视差效果: 随着用户滚动页面，一些组件会随着滚动产生动画视差效果，如放大/缩小、位移、背景色/透明度/模糊渐变等
-![](https://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/5cba5521d6192d3415b016e946d6d21c.gif)
+![](http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/5cba5521d6192d3415b016e946d6d21c.gif)
 > 注意: 在weex环境下必须放在滚动容器的第一个位置
 > 注意: 该组件目前只支持H5和weex，不支持小程序
 ## 安装
@@ -29,8 +29,6 @@ import Parallax from 'rax-parallax';
 | extraBindingProps      | `array` |[]| false | 额外需要绑定在bindingScroller上的binding属性 |<img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /><img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />|
 
 ## 示例
-[在线 Demo](https://jsplayground.taobao.org/raxplayground/80768709-4464-41ac-91a2-8ce81f6068e5)
-
 ```jsx
 import { createElement, Component, render, createRef } from 'rax';
 import View from 'rax-view';

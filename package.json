@@ -1,6 +1,6 @@
 {
   "name": "rax-parallax",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0",
   "description": "Parallax component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -35,8 +35,8 @@
   },
   "dependencies": {
     "rax-find-dom-node": "^1.0.0",
-    "rax-view": "^1.0.1-beta.3",
-    "universal-env": "^0.6.5",
+    "rax-view": "^1.0.1",
+    "universal-env": "^1.0.0",
     "weex-bindingx": "^0.0.49"
   },
   "peerDependencies": {
@@ -55,10 +55,10 @@
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
     "rax": "^1.0.0",
-    "rax-picture": "^1.0.1-beta.2",
-    "rax-recyclerview": "^1.0.0-beta.2",
+    "rax-image": "^1.0.0",
+    "rax-recyclerview": "^1.0.0",
     "rax-scripts": "1.2.1",
     "rax-test-renderer": "^1.0.0",
-    "rax-text": "^1.0.1-beta.1"
+    "rax-text": "^1.0.1"
   }
 }
