@@ -1,14 +1,15 @@
 'use strict';
 
-import {createElement, Component, render, setNativeProps, findDOMNode} from 'rax';
+import {createElement, Component, createRef} from 'rax';
 import View from 'rax-view';
+import findDOMNode from 'rax-find-dom-node';
 import {isWeex} from 'universal-env';
 import bindingx from 'weex-bindingx';
 
 // findDOMNode has difference between weex an web
 function getEl(el) {
   if (typeof el === 'string' || typeof el === 'number') return el;
-  return isWeex ? findDOMNode(el).ref : findDOMNode(el);
+  return isWeex ? findDOMNode(el.current).ref : findDOMNode(el.current);
 }
 
 // judge bindingx support
@@ -102,15 +103,17 @@ function transformRangeToExpression(params = {}, propertyType) {
 
 
 class BindingParallax extends Component {
+  constructor(props) {
+    super(props);
+    this.parallax = createRef();
+  }
   static defaultProps = {
     bindingScroller: null,
     extraBindingProps: null
   }
-
-
   componentDidMount() {
     let {bindingScroller, transform = [], backgroundColor, opacity, extraBindingProps = []} = this.props;
-    let parallax = getEl(this.refs.parallax);
+    let parallax = getEl(this.parallax);
     let bindingProps = [];
     transform.forEach((trans) => {
       let res = transformRangeToExpression(trans, 'transform');
@@ -161,7 +164,7 @@ class BindingParallax extends Component {
   }
 
   render() {
-    return <View ref="parallax" style={{...this.props.style}}>{this.props.children}</View>;
+    return <View ref={this.parallax} style={{...this.props.style}}>{this.props.children}</View>;
   }
 }
 
@@ -175,7 +178,7 @@ class Parallax extends Component {
     let {bindingScroller} = this.props;
     if (!bindingScroller) return null;
 
-    let scroller = isWeex ? findDOMNode(bindingScroller).ref : findDOMNode(bindingScroller);
+    let scroller = getEl(bindingScroller);
     if (isSupportBinding || !isWeex) {
       return <BindingParallax {...this.props} bindingScroller={scroller} />;
     }
