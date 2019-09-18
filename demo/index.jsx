@@ -1,9 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { createElement, Component, render, createRef } from 'rax';
 import View from 'rax-view';
 import Text from 'rax-text';
 import RecyclerView from 'rax-recyclerview';
 import Image from 'rax-image';
-import DU from "driver-universal"
+import DU from 'driver-universal';
 import Parallax from '../src/index';
 
 let listData = [
@@ -27,14 +28,13 @@ let listData = [
 
 
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       index: 0,
       data: listData
     };
-    this.bindingScroller = createRef()
+    this.bindingScroller = createRef();
   }
 
   listLoading = () => {
@@ -101,7 +101,7 @@ class App extends Component {
     return (
       <View style={styles.container}>
         <Parallax
-          bindingScroller={this.state.bindingScroller}
+          bindingScroller={this.bindingScroller}
           transform={[
             {
               type: 'translate',
@@ -111,7 +111,7 @@ class App extends Component {
             {
               type: 'scale',
               in: [-150, 0],
-              out: [1.3, 1.3, 1, 1]  // [x1,y1,x2,y2]
+              out: [1.3, 1.3, 1, 1] // [x1,y1,x2,y2]
             }
           ]}>
           <Image style={{ width: 750, height: 576 }}
@@ -128,17 +128,22 @@ class App extends Component {
             </View>
           </RecyclerView.Cell>
           {dataSource.map(this.listItem)}
-          {this.listLoading()}
+          <RecyclerView.Cell>
+            {this.listLoading()}
+          </RecyclerView.Cell>
         </RecyclerView>
       </View>
     );
   }
-
 };
 
 const styles = {
   container: {
-    flex: 1
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0
   },
   title: {
     margin: 50,
